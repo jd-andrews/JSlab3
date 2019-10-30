@@ -4,11 +4,28 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <title>Address Book Lab (JSLab3)</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Maven+Pro&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/d6f591337e.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
-    <h1>JSLab 3</h1>
-    <h4>open console</h4>
-    <script src="script.js"></script>
+    <div id="overlay"></div>
+    <form id="form">
+      <h1>Contact Form</h1>
+      <input type="text" placeholder="name" name="name" required />
+      <input type="email" placeholder="email" name="email" required />
+      <input type="text" placeholder="phone-number" name="phone" required />
+      <input type="text" placeholder="relation" name="relation" />
+      <button type="submit" id="submit">Add Contact</button>
+    </form>
+    <section id="content"></section>
+    <script src="script2.js"></script>
   </body>
 </html>
