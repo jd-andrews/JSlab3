@@ -14,7 +14,7 @@ class AddressBook {
     ); /* creates new Contact in contacts */
     this.contacts.push(contact); /* pushes contact into contacts array*/
   }
-  deleteAt(index) {
+  deletAt(index) {
     this.contacts.splice(
       index,
       1
@@ -71,50 +71,46 @@ class Contact {
   }
 }
 
-//// Lab Part Two ////
+const addressBook = new AddressBook(); /* creates variable book with AddressBook class */
+addressBook.add("David Andrews", "david814@aol.com", "313-313-3131", "Father");
+addressBook.add("Karen Andrews", "kles@aol.com", "248-248-2484", "Mother");
+addressBook.add("JD Andrews", "jdandrews357@gmail.com", "313-908-3007", "self");
+addressBook.add("Cosmo Andrews", "dog@god.dog", "010-010-0110", "dog");
+addressBook.add("Tasha Andrews", "doggo@god.dog", "010-010-0110", "dog");
+addressBook.add("Imaginary Member", "lol@try.me", "800-813-5101", "joke");
+addressBook.deletAt(5);
 
-const addressBook = new AddressBook();
-const form = document.querySelector("#form");
+/* first try at print function where
+it required .contacts notation in the parameter*/
+// const print = function(addressBook) {
+//   for (const item of addressBook) {
+//     console.log(item);
+//   }
+// };
 
-function display() {
-  document.querySelector("#content").innerHTML = "";
-  addressBook.contacts.forEach((contact, index) => {
-    const entry = document.createElement("div");
-    entry.classList.add("contact");
-    entry.innerHTML = `
-        <p>Name: ${contact.name}</p>
-        <p>Email: ${contact.email}</p>
-        <p>Phone: ${contact.phone}</p>
-        <p>Relation: ${contact.phone}</p>
-        <i class="fa fa-trash-alt" data-index-number="${index}" aria-hidden="true"></i>`;
-    document.querySelector("#content").appendChild(entry);
-  });
-}
+// print(book.contacts);
 
-display();
-
-function addContact(event) {
-  event.preventDefault();
-  const formData = new FormData(form);
-  addressBook.add(
-    formData.get("name"),
-    formData.get("email"),
-    formData.get("phone"),
-    formData.get("relation")
-  );
-  display();
-  form.reset();
-}
-
-form.addEventListener("submit", addContact);
-
-function deleteContact(event) {
-  if (event.target.classList.contains("fa-trash-alt")) {
-    const index = event.target.getAttribute("data-index-number");
-    console.log(index);
-    addressBook.deleteAt(index);
-    display();
+/* final version where dot notation is used in the function */
+const printFinal = function(addressBook) {
+  for (const contact of addressBook.contacts) {
+    console.log(contact);
   }
-}
+};
 
-document.querySelector("#content").addEventListener("click", deleteContact);
+printFinal(addressBook);
+
+console.log(addressBook.findByName("David Andrews"));
+
+console.log(addressBook.filterByRelation("dog"));
+
+// // addressBook.clear(); // //
+
+console.log(
+  addressBook.edit("David Andrews", "Dave Andrews", "davi@jf", "ff", "kj")
+);
+
+addressBook.listNames();
+
+addressBook.deleteByName("JD Andrews");
+
+addressBook.listNames();
